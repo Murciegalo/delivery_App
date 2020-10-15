@@ -1,16 +1,24 @@
 import React from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default function Home({navigation}) {
   return (
     <View>
       <Text>Homepage</Text>
-      <Button 
-        title="details" 
-        onPress={() => navigation.navigate('Login', {
-          id: 'test'
-        })} 
-      />
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() =>
+          navigation.navigate("Login", {
+            id: "test",
+          })
+        }
+      ></TouchableOpacity>
     </View>
-  )
+  );
 }
+
+const styles = StyleSheet.create({
+  btn:{
+  }
+})
