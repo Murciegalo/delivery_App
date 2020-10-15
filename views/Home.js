@@ -9,16 +9,15 @@ export default function Home({navigation}) {
       <TouchableOpacity
         style={styles.btn}
         onPress={() =>
-          navigation.navigate("Login", {
-            id: "test",
-          })
+          navigation.navigate("Login", { id: "test" })
         }
-      ></TouchableOpacity>
+      ><Text>Test</Text></TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   btn:{
+    flex:1
   }
 })

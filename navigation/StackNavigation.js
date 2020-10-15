@@ -5,7 +5,7 @@ import Home from '../views/Home';
 import Login from '../views/Login';
 import Tracker from '../views/Tracker';
 import Restr_Area from '../views/Restr_Area';
-
+// import { MaterialCommunityIcons } from "@expo/vector-icons";
 const Stack = createStackNavigator();
 
 export default function StackNavigation() {
@@ -22,9 +22,19 @@ export default function StackNavigation() {
             headerTitleStyle:{fontWeight:'bold', alignSelf:'center'}
           }}
         />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Tracker" component={Tracker} />
-        <Stack.Screen name="Restr_Area" component={Restr_Area} />
+        <Stack.Screen 
+          name="Login" 
+          component={Login}
+          options={{headerShown: false}} 
+        />
+        <Stack.Screen 
+          name="Tracker" 
+          component={Tracker} 
+        />
+        <Stack.Screen 
+          name="Restr_Area" 
+          component={Restr_Area} 
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
