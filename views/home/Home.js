@@ -7,7 +7,7 @@ export default function Home({ navigation }) {
       <Text>Homepage</Text>
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => navigation.navigate("Login", { id: "t" })}
+        onPress={() => navigation.navigate("Login")}
       >
         <Text>Test</Text>
       </TouchableOpacity>

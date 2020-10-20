@@ -1,8 +1,8 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "../views/Home";
-import Login from "../views/Login";
+import Home from "../views/home/Home";
+import Login from "../views/login/Login";
 import Tracker from "../views/Tracker";
 import Restr_Area from "../views/Restr_Area";
 // import { MaterialCommunityIcons } from "@expo/vector-icons";
