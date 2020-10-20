@@ -1,23 +1,22 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
   return (
     <View>
       <Text>Homepage</Text>
       <TouchableOpacity
         style={styles.btn}
-        onPress={() =>
-          navigation.navigate("Login", { id: "test" })
-        }
-      ><Text>Test</Text></TouchableOpacity>
+        onPress={() => navigation.navigate("Login", { id: "t" })}
+      >
+        <Text>Test</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  btn:{
-    flex:1
-  }
-})
+  btn: {
+    flex: 1,
+  },
+});
