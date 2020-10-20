@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   View,
@@ -11,12 +11,13 @@ import {
 import styles from "./login.styles";
 
 export default function Login() {
+  const [display, setDisplay] = useState("none");
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={[styles.container, c.darkBg]}
+      style={styles.container}
     >
-      <View>{/* <Image source={} /> */}</View>
+      <View style={styles.logo}>{/* <Image source={} /> */}</View>
 
       <View>
         <Text style={styles.error}>Invalid user or password</Text>
