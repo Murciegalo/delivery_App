@@ -21,7 +21,7 @@ export default function Login() {
         <Image source={require('../../assets/icon.png')} />
       </View>
       <View>
-        <Text style={styles.error}>Invalid user or password</Text>
+        <Text style={styles.error(display)}>Invalid user or password</Text>
       </View>
       <View style={styles.form}>
         <TextInput style={styles.input} placeholder="User" />
