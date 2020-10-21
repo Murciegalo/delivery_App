@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginBottom: 10,
+    width: 100,
+    height: 100,
+    resizeMode: 'stretch',
   },
   error: (text = "none") => ({
     fontWeight: "bold",
@@ -17,7 +20,7 @@ const styles = StyleSheet.create({
     color: "red",
     marginTop: 5,
     marginBottom: 15,
-    alignSelf: "center",
+    textAlign: "center",
     display: text,
   }),
   form: {

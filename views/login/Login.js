@@ -17,12 +17,12 @@ export default function Login() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <View style={styles.logo}>{/* <Image source={} /> */}</View>
-
+      <View style={styles.logo}>
+        <Image source={require('../../assets/icon.png')} />
+      </View>
       <View>
         <Text style={styles.error}>Invalid user or password</Text>
       </View>
-
       <View style={styles.form}>
         <TextInput style={styles.input} placeholder="User" />
         <TextInput
