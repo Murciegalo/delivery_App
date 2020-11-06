@@ -45,7 +45,9 @@ router.get('/update', async (req, res) => {
 
 // Delete Users
 router.get('/delete', async (req, res) => {
-  await user.findAll()
+  await user.destroy({
+    where:{id:3}
+  })
   return res.status(200).json({ status: 'success'}); 
 })
 
