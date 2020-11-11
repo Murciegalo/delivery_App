@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 export default function StackNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator>
         <Stack.Screen
           name="Home"
           component={Home}
@@ -22,7 +22,7 @@ export default function StackNavigation() {
             headerTitleStyle: { fontWeight: "bold", alignSelf: "center" },
           }}
         />
-        <Stack.Screen
+        <Stack.Screen initialRouteName="Login"
           name="Login"
           component={Login}
           options={{ headerShown: false }}

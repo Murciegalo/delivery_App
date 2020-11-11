@@ -1,13 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function Home({ navigation }) {
+export default function Home(props) {
+  console.log(props)
   return (
     <View>
       <Text>Homepage</Text>
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => navigation.navigate("Login")}
+        onPress={() => props.navigation.navigate('Login')}
       >
         <Text>Test</Text>
       </TouchableOpacity>
@@ -18,5 +19,6 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   btn: {
     flex: 1,
+    margin: 20
   },
 });
