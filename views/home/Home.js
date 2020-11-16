@@ -1,24 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
 export default function Home(props) {
-  console.log(props)
+  console.log('Loading', props)
   return (
-    <View>
-      <Text>Homepage</Text>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => props.navigation.navigate('Login')}
-      >
-        <Text>Test</Text>
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <Text>HomeScreen</Text>
+      <Button
+        onPress={() => props.navigation.navigate('login')} title="test"
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  btn: {
-    flex: 1,
-    margin: 20
+  container: {
+    flex: 1
   },
 });
