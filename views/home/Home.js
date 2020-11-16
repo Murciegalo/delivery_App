@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 export default function Home(props) {
-  console.log('Loading', props)
   return (
     <View style={styles.container}>
       <Text>HomeScreen</Text>

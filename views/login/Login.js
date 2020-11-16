@@ -30,7 +30,7 @@ export default function Login() {
           placeholder="Password"
           secureTextEntry={true}
         />
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={()=> console.log('pressed')}>
           <Text style={styles.btnText}>Login</Text>
         </TouchableOpacity>
       </View>

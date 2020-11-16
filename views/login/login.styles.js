@@ -5,14 +5,15 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     alignSelf: "center",
-    justifyContent: "center",
-    backgroundColor: "#333",
+    justifyContent: "space-evenly",
+    backgroundColor: "#fff",
   },
   logo: {
     marginBottom: 10,
     width: 100,
     height: 100,
     resizeMode: 'stretch',
+    alignSelf:'center'
   },
   error: (text = "none") => ({
     fontWeight: "bold",
@@ -29,10 +30,9 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#fff",
-    fontSize: 19,
+    fontSize: 20,
     padding: 7,
     marginBottom: 15,
-    borderRadius: 2,
   },
   btn: {
     padding: 12,
