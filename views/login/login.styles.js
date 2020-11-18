@@ -4,14 +4,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    alignSelf: "center",
     justifyContent: "space-evenly",
     backgroundColor: "#fff",
   },
+  header:{
+    width: '100%',
+    alignItems:'center'
+  },
   logo: {
     marginBottom: 10,
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
     resizeMode: 'stretch',
     alignSelf:'center'
   },
@@ -25,6 +28,7 @@ const styles = StyleSheet.create({
     display: text,
   }),
   form: {
+    flex: .5,
     width: "80%",
     alignSelf: "center",
   },
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     padding: 12,
-    backgroundColor: "#F58634",
+    backgroundColor: "#FFF",
     alignSelf: "center",
     borderRadius: 5,
   },
