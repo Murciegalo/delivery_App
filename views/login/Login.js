@@ -9,14 +9,48 @@ import {
   Text,
   Platform,
 } from "react-native";
+import * as LocalAuthentication from 'expo-local-authentication'
+
 import styles from "./login.styles";
 
 export default function Login({navigation}) {
   const [display, setDisplay] = useState("none");
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
-  const [login, setLogin] = useState(null)
+  const [login, setLogin] = useState(false)
+  
+  // Biometry Login
+  const verifyLogin = async () => {
+    let res = await AsyncStorage.getItem('@user')
+    let json = await res.JSON.parse(res)
+    if(json !== null){
+      setEmail(json.email)
+      setPassword(json.password)
+      setLogin(true)
+    }
+  } 
+  useEffect(() => {
+    verifyLogin()
+    return () => {
+      
+    }
+  }
+  , [])
 
+  const biometric = async() => {
+    console.log('chamando biometria');
+  }
+  useEffect(() => {
+    if(login){
+      biometric()
+    }
+    return () => {
+      
+    }
+  }, [login])
+
+
+  // Formal Login
   const onSubmit = async () => {
     let res = await fetch('http://192.168.0.20:3000/auth/login' , {
       method: 'POST',
