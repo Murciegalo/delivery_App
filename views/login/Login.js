@@ -17,7 +17,7 @@ export default function Login() {
   const [login, setLogin] = useState(null)
 
   const onSubmit = async () => {
-    let res = await fetch('exp://192.168.0.20:3000/login' , {
+    let res = await fetch('http://192.168.0.20:3000/auth/login' , {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -28,8 +28,14 @@ export default function Login() {
         password
       })
     });
-    console.log(res);
+    let resJson = await res.json()
+    if(resJson.status === 'failed'){
+      setDisplay('flex')
+      setTimeout(() => setDisplay('none'), 2000)
+    }
+    console.log(resJson);
   }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -42,7 +48,7 @@ export default function Login() {
         <Image source={require('../../assets/iconB.jpg')} />
       </View>
       <View>
-        <Text style={styles.error(display)}>Invalid user or password</Text>
+        <Text style={styles.error(display)}>Sorry, Invalid credentials</Text>
       </View>
       <View style={styles.form}>
         <TextInput 
