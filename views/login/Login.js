@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import styles from "./login.styles";
 
-export default function Login() {
+export default function Login({navigation}) {
   const [display, setDisplay] = useState("none");
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
@@ -36,6 +36,7 @@ export default function Login() {
       await AsyncStorage.clear()
     }
     await AsyncStorage.setItem('@user', JSON.stringify(format))
+    navigation.navigate('restrict')
   }
 
   return (
