@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -28,12 +29,13 @@ export default function Login() {
         password
       })
     });
-    let resJson = await res.json()
-    if(resJson.status === 'failed'){
+    let format = await res.json()
+    if(format.status === 'failed'){
       setDisplay('flex')
       setTimeout(() => setDisplay('none'), 2000)
+      await AsyncStorage.clear()
     }
-    console.log(resJson);
+    await AsyncStorage.setItem('@user', JSON.stringify(format))
   }
 
   return (
