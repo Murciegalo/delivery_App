@@ -22,7 +22,7 @@ export default function Login({navigation}) {
   // Biometry Login
   const verifyLogin = async () => {
     let res = await AsyncStorage.getItem('@user')
-    let json = await res.JSON.parse(res)
+    let json = await JSON.parse(res)
     if(json !== null){
       setEmail(json.email)
       setPassword(json.password)
@@ -37,9 +37,24 @@ export default function Login({navigation}) {
   }
   , [])
 
-  const biometric = async() => {
-    console.log('chamando biometria');
+  const biometric = async () => {
+    let compatible = await LocalAuthentication.hasHardwareAsync();
+    if(compatible){
+      let biometricRecords = await LocalAuthentication.isEnrolledAsync()
+      if(!biometricRecords){
+        return alert('Biometry not registered')
+      }
+      let result = await LocalAuthentication.authenticateAsync()
+      if(result.success) {
+        onSubmit()
+      }
+      else{
+        setEmail(null)
+        setPassword(null)
+      }
+    }
   }
+
   useEffect(() => {
     if(login){
       biometric()
