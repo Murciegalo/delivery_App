@@ -38,6 +38,10 @@ export default function Login({navigation}) {
         if(json === 'error'){
           setDisplay('flex')
           setTimeout(() => setDisplay('none'), 1500);
+          await AsyncStorage.clear()
+        }
+        else{
+          await AsyncStorage.setItem('@user', JSON.stringify(json))
         }
       }
       else{
