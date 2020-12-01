@@ -19,8 +19,35 @@ export default function Login({navigation}) {
   const [password, setPassword] = useState(null)
   const [login, setLogin] = useState(false)
   
-  const onSubmit = () => {
-    console.log('pressed');
+  const onSubmit = async () => {
+    try {
+      if(email && password){
+        let res = await fetch('http://192.168.0.20:3000/auth/login' , {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email,
+            password
+          })
+        })
+        
+        let json = await res.json()
+        if(json === 'error'){
+          setDisplay('flex')
+          setTimeout(() => setDisplay('none'), 1500);
+        }
+      }
+      else{
+        setDisplay('flex')
+        setTimeout(() => setDisplay('none'), 1500);
+      }  
+    } 
+    catch (err) {
+      console.log(err);
+    }
   }
   return (
     <KeyboardAvoidingView
