@@ -9,15 +9,16 @@ export default function Restr_Area() {
     async function getUser(){
       const logInUser = await AsyncStorage.getItem('@user')
       const json = JSON.parse(logInUser)
-      setUser(json)
+      if(json){
+        setUser(json)
+      }
     }
     getUser()
   }
   , [])
-
   return (
     <View>
-      <Text>Restricted Area {user.email}</Text>
+      <Text>Restricted Area</Text>
     </View>
   )
 }

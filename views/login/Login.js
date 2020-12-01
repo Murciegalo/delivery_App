@@ -53,6 +53,29 @@ export default function Login({navigation}) {
       console.log(err);
     }
   }
+  const verifyLogin = async () => {
+    let res = await AsyncStorage.getItem('@user')
+    let json = await JSON.parse(res)
+    if(json !== null){
+      setEmail(json.email)
+      setPassword(json.password)
+      setLogin(true)
+    }
+  }
+  useEffect(() => {
+    verifyLogin()  
+  }, 
+  [])
+
+  const biometric = async () => {
+    console.log('biometry');
+  }
+  useEffect(() => {
+    if(login){
+      biometric()
+    }
+  }, 
+  [login])
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
