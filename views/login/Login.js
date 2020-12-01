@@ -39,10 +39,10 @@ export default function Login({navigation}) {
           setDisplay('flex')
           setTimeout(() => setDisplay('none'), 1500);
           await AsyncStorage.clear()
+          return 
         }
-        else{
-          await AsyncStorage.setItem('@user', JSON.stringify(json))
-        }
+        await AsyncStorage.setItem('@user', JSON.stringify(json))
+        navigation.navigate('restrict')
       }
       else{
         setDisplay('flex')

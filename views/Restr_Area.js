@@ -8,17 +8,16 @@ export default function Restr_Area() {
   useEffect(() => {
     async function getUser(){
       const logInUser = await AsyncStorage.getItem('@user')
-      JSON.parse(logInUser)
-      setUser(logInUser)
+      const json = JSON.parse(logInUser)
+      setUser(json)
     }
-    getUser
-    return () => {
-    }
+    getUser()
   }
   , [])
+
   return (
     <View>
-      <Text>Restricted Area</Text>
+      <Text>Restricted Area {user.email}</Text>
     </View>
   )
 }
