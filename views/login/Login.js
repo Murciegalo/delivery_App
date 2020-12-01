@@ -5,9 +5,9 @@ import {
   View,
   Image,
   TextInput,
-  TouchableOpacity,
   Text,
   Platform,
+  Pressable,
 } from "react-native";
 import * as LocalAuthentication from 'expo-local-authentication'
 
@@ -19,75 +19,9 @@ export default function Login({navigation}) {
   const [password, setPassword] = useState(null)
   const [login, setLogin] = useState(false)
   
-  // Biometry Login
-  const verifyLogin = async () => {
-    let res = await AsyncStorage.getItem('@user')
-    let json = await JSON.parse(res)
-    if(json !== null){
-      setEmail(json.email)
-      setPassword(json.password)
-      setLogin(true)
-    }
-  } 
-  useEffect(() => {
-    verifyLogin()
-    return () => {
-      
-    }
+  const onSubmit = () => {
+    console.log('pressed');
   }
-  , [])
-
-  const biometric = async () => {
-    let compatible = await LocalAuthentication.hasHardwareAsync();
-    if(compatible){
-      let biometricRecords = await LocalAuthentication.isEnrolledAsync()
-      if(!biometricRecords){
-        return alert('Biometry not registered')
-      }
-      let result = await LocalAuthentication.authenticateAsync()
-      if(result.success) {
-        onSubmit()
-      }
-      else{
-        setEmail(null)
-        setPassword(null)
-      }
-    }
-  }
-
-  useEffect(() => {
-    if(login){
-      biometric()
-    }
-    return () => {
-      
-    }
-  }, [login])
-
-
-  // Formal Login
-  const onSubmit = async () => {
-    let res = await fetch('http://192.168.0.20:3000/auth/login' , {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email,
-        password
-      })
-    });
-    let format = await res.json()
-    if(format.status === 'failed'){
-      setDisplay('flex')
-      setTimeout(() => setDisplay('none'), 2000)
-      await AsyncStorage.clear()
-    }
-    await AsyncStorage.setItem('@user', JSON.stringify(format))
-    navigation.navigate('restrict')
-  }
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -114,9 +48,9 @@ export default function Login({navigation}) {
           secureTextEntry={true}
           onChangeText={ pass => setPassword(pass) }
         />
-        <TouchableOpacity style={styles.btn} onPress={onSubmit}>
+        <Pressable style={styles.btn} onPress={onSubmit}>
           <Text style={styles.btnText}>Login</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </KeyboardAvoidingView>
   );

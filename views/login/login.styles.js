@@ -34,20 +34,20 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#fff",
-    fontSize: 20,
+    fontSize: 17,
     padding: 7,
     marginBottom: 15,
   },
   btn: {
-    padding: 12,
-    backgroundColor: "#FFF",
+    padding: 15,
+    backgroundColor: "#685",
     alignSelf: "center",
     borderRadius: 5,
   },
   btnText: {
     fontWeight: "bold",
     fontSize: 22,
-    color: "#333",
+    color: "#fff",
   },
 });
 export default styles;
