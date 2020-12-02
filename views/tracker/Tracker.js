@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 export default function Tracker() {
   return (
     <View>
-      <Text></Text>
+      <Text>Tracker</Text>
     </View>
   )
 }

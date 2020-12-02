@@ -3,8 +3,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../views/home/Home";
 import Login from "../views/login/Login";
-import Tracker from "../views/Tracker";
-import Restr_Area from "../views/Restr_Area";
+import Tracker from "../views/tracker/Tracker";
+import Restr_Area from "../views/restrArea/Restr_Area";
 
 const Stack = createStackNavigator();
 

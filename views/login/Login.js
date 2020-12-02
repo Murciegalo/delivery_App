@@ -9,8 +9,7 @@ import {
   Platform,
   Pressable,
 } from "react-native";
-import * as LocalAuthentication from 'expo-local-authentication'
-
+// import * as LocalAuthentication from 'expo-local-authentication'
 import styles from "./login.styles";
 
 export default function Login({navigation}) {
@@ -66,16 +65,35 @@ export default function Login({navigation}) {
     verifyLogin()  
   }, 
   [])
-
-  const biometric = async () => {
-    console.log('biometry');
-  }
-  useEffect(() => {
-    if(login){
-      biometric()
-    }
-  }, 
-  [login])
+  // BIOMETRIC LOGIN IS NOT AVAILABLE ON ALL DEVICES
+  // const biometric = async () => {
+  //   // available at your phone?
+  //   let compatible = await LocalAuthentication.hasHardwareAsync()
+  //   if(compatible){
+  //     // registered?
+  //     let biometricRecords = await LocalAuthentication.isEnrolledAsync()
+  //     if(!biometricRecords){
+  //       alert(`Biometry don't register`)
+  //     }
+  //     else{
+  //       let result = await LocalAuthentication.authenticateAsync()
+  //       if(result.success){
+  //         // login
+  //         onSubmit()
+  //       }
+  //       else{
+  //         setEmail(null)
+  //         setPassword(null)
+  //       }
+  //     }
+  //   }
+  // }
+  // useEffect(() => {
+  //   if(login){
+  //     // biometric()
+  //   }
+  // }, 
+  // [login])
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
