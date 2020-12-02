@@ -1,12 +1,14 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {styles} from './profile.styles.js'
 
 
 const Profile = ({navigation}) => {
-  const logout = () => {
-    console.log('logout');
+  const logout = async () => {
+    await AsyncStorage.clear()
+    navigation.navigate('login')
   }
   return (
     <View style={styles.container}>
