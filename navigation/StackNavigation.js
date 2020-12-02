@@ -27,7 +27,7 @@ export default function StackNavigation() {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="tracker" component={Tracker} />
-      <Stack.Screen name="restrict" component={Restr_Area} />
+      <Stack.Screen name="restrict" options={{headerShown: false}} component={Restr_Area} />
     </Stack.Navigator>
   </NavigationContainer>
 }

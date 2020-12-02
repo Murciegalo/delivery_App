@@ -5,7 +5,6 @@ let user = models.User;
 
 // Login User
 router.post('/login', async (req, res) => {
-  console.log('ReqBody', req.body);
   let loggedUser = await user.findOne({
     where:{
       email: req.body.email,

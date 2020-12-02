@@ -1,10 +1,30 @@
 import React from 'react'
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import {styles} from './profile.styles.js'
 
-const Profile = () => {
+
+const Profile = ({navigation}) => {
+  const logout = () => {
+    console.log('logout');
+  }
   return (
-    <View>
-      <Text>profile</Text>
+    <View style={styles.container}>
+      <TouchableOpacity 
+        style={styles.btnHome}
+        onPress={() => navigation.navigate('Home')}
+      >
+        <Icon name="home" size={20} color="#991" />
+      </TouchableOpacity>
+      <Text style={styles.title}>
+        Profile
+      </Text>
+      <TouchableOpacity 
+        style={styles.btnLogout}
+        onPress={() => logout()}
+      >
+        <Icon name="sign-out" size={20} color="#991" />
+      </TouchableOpacity>
     </View>
   )
 }
