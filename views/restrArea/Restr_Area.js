@@ -1,7 +1,8 @@
 import React, {useEffect,useState} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
-import Icon from 'react-native-vector-icons/dist/FontAwesome'
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import Delivery from '../delivery/Delivery'
 import EditDelivery from '../editDelivery/EditDelivery'
 import Profile from '../profile/Profile'
