@@ -1,11 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native';
+import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 
-const EditDelivery = () => {
+const EditDelivery = ({navigation}) => {
   return (
-    <View>
-      <Text>EditD</Text>
-    </View>
+    <MenuRestr_Area navigation={navigation} name={'Check Deliveries'}/>
   )
 }
 
