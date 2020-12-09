@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {styles} from './menu.styles.js'
 
-const MenuRestr_Area = ({navigation}) => {
+const MenuRestr_Area = ({navigation, name}) => {
   const logout = async () => {
     await AsyncStorage.clear()
     navigation.navigate('login')
@@ -18,7 +18,7 @@ const MenuRestr_Area = ({navigation}) => {
         <Icon name="home" size={20} color="#991" />
       </TouchableOpacity>
       <Text style={styles.title}>
-        Profile
+        {name}
       </Text>
       <TouchableOpacity 
         style={styles.btnLogout}
