@@ -32,7 +32,6 @@ export default function Login({navigation}) {
             password
           })
         })
-        
         let json = await res.json()
         if(json === 'error'){
           setDisplay('flex')
@@ -49,7 +48,7 @@ export default function Login({navigation}) {
       }  
     } 
     catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   }
   const verifyLogin = async () => {
@@ -59,6 +58,11 @@ export default function Login({navigation}) {
       setEmail(json.email)
       setPassword(json.password)
       setLogin(true)
+    }
+    else{
+      setLogin(false)
+      setEmail(null)
+      setPassword(null)
     }
   }
   useEffect(() => {
