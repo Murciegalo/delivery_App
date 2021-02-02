@@ -9,8 +9,10 @@ import {
   Platform,
   Pressable,
 } from "react-native";
-// import * as LocalAuthentication from 'expo-local-authentication'
 import styles from "./login.styles";
+import config from '../../config/config.json'
+// import * as LocalAuthentication from 'expo-local-authentication'
+
 
 export default function Login({navigation}) {
   const [display, setDisplay] = useState("none");
@@ -21,7 +23,7 @@ export default function Login({navigation}) {
   const onSubmit = async () => {
     try {
       if(email && password){
-        let res = await fetch('http://192.168.0.20:3000/auth/login' , {
+        let res = await fetch(`${config.urlRoot}auth/login` , {
           method: 'POST',
           headers: {
             Accept: 'application/json',
