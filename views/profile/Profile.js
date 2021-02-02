@@ -37,7 +37,7 @@ const Profile = ({navigation}) => {
     })
     let json = await res.json()
     console.log(json);
-    setMsg(json)
+    // setMsg(json)
   }
   return (
     <View>

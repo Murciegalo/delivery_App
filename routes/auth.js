@@ -20,19 +20,19 @@ router.post('/login', async (req, res) => {
 
 // Verify Password from User Modifying
 router.post('/verifyPass', async (req, res) => {
-  let user = await user.findOne({
+  let loggedUser = await user.findOne({
     where:{
       id: req.body.id,
-      password: req.body.oldPassword
+      password: req.body.oldPass
     }
   })
-  if(user === null){
+  if(loggedUser === null){
     res.send(JSON.stringify(`Sorry, your old password don't match`))
   }
   else{
     if(req.body.newPass === req.body.confirmNewPass){
-      user.password = req.body.newPass //bcrypt to be added
-      user.save()
+      loggedUser.password = req.body.newPass //bcrypt to be added
+      loggedUser.save()
       res.send(JSON.stringify('Password updated'))
     }
     else{
