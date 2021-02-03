@@ -1,4 +1,5 @@
 import React, {useEffect,useState} from 'react'
+import {Alert, BackHandler} from 'react-native' 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -9,7 +10,7 @@ import Profile from '../profile/Profile'
 
 
 
-export default function Restr_Area() {
+export default function Restr_Area({navigation}) {
   const [user, setUser] = useState(null)
   const Tab = createMaterialBottomTabNavigator();
 
@@ -23,7 +24,32 @@ export default function Restr_Area() {
     }
     getUser()
   }
-  , [])
+  ,[])
+
+  useEffect(() => {
+    const backAction = () => {
+      Alert.alert("Hold on!", "Are you sure you want to go back?", [
+        {
+          text: "Cancel",
+          onPress: () => null,
+          style: "cancel"
+        },
+        { text: "YES", onPress: () => {
+            navigation.navigate('home')
+            BackHandler.exitApp()
+        }}
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []); 
+
   return <Tab.Navigator
     activeColor="#999"
     inactiveColor="#fff"
