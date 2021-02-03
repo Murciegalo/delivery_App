@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState,useEffect} from 'react'
-import { View, TextInput, Text } from 'react-native';
+import { View, TextInput, TouchableOpacity} from 'react-native';
 import styles from './style';
 import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 import config from '../../config/config.json'
@@ -21,7 +21,7 @@ const Delivery = ({navigation}) => {
     let length = 20
     let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     for (let i = length; i > 0; i--){
-      result += chars[Math.floor(Math.random() * 62)]
+      result += chars[Math.floor(Math.random() * 61)]
     }
     setCode(result)
   }
@@ -33,20 +33,37 @@ const Delivery = ({navigation}) => {
     setUser(json.id)
   }
 
+  const onSubmit = async () => {
+    let res = await fetch(`${config.urlRoot}deliveries/create`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: user,
+        code,
+        product,
+        local: address
+      })
+    })
+  }
   return (
     <View>
       <MenuRestr_Area navigation={navigation} name={'Delivery'}/>
-      <View style={styles.input}>
-        <Text>
-          {address}
-          {user}
-          {product}
-          {code}
-        </Text>
+      
+      <View>
         <TextInput 
-          placeholder='Product name'
+          placeholder='Name'
           onChangeText={ text => setProduct(text)}
+          style={styles.input}
         />
+        <TouchableOpacity 
+          style={styles.input}
+          onPress={() => onSubmit()}
+        >
+          Register Product
+        </TouchableOpacity>
       </View>
     </View>
   )
