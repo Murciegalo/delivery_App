@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState,useEffect} from 'react'
-import { View, TextInput, TouchableOpacity} from 'react-native';
-import styles from './style';
+import { View, TextInput, Text, TouchableOpacity} from 'react-native';
 import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 import config from '../../config/config.json'
 
@@ -12,29 +11,33 @@ const Delivery = ({navigation}) => {
   const [product, setProduct] = useState(null)
   const [res, setRes] = useState(null)
 
-  useEffect(() => { getUser(), [] })
-  useEffect(() => { randomTrack(), []})
-
-  //Random Track Code
-  const randomTrack = async () => {
-    let result = ''
-    let length = 20
-    let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    for (let i = length; i > 0; i--){
-      result += chars[Math.floor(Math.random() * 61)]
-    }
-    setCode(result)
-  }
+  useEffect(() => {
+    getUser()
+  ,[]})
+  
+  useEffect(() => {
+    let code = randomTrack()
+    setCode(code)
+  ,[]})
 
   // Logged In user ID
-  const getUser = async () => {
+  async function getUser(){
     let res = await AsyncStorage.getItem('@user')
     let json = JSON.parse(res)
     setUser(json.id)
-  }
+  } 
 
+  //Random Track Code
+  async function randomTrack(){
+    let result = ''
+    let length = 20
+    let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    for (let i = length; i > 0; i--) result += chars[Math.floor(Math.random() * 61)]
+    return result
+  } 
+  
   const onSubmit = async () => {
-    let res = await fetch(`${config.urlRoot}deliveries/create`, {
+    let res = await fetch(`${config.urlRoot}delivery/create`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -43,26 +46,18 @@ const Delivery = ({navigation}) => {
       body: JSON.stringify({
         userId: user,
         code,
-        product,
-        local: address
+        local: address,
+        product
       })
     })
   }
   return (
     <View>
       <MenuRestr_Area navigation={navigation} name={'Delivery'}/>
-      
       <View>
-        <TextInput 
-          placeholder='Name'
-          onChangeText={ text => setProduct(text)}
-          style={styles.input}
-        />
-        <TouchableOpacity 
-          style={styles.input}
-          onPress={() => onSubmit()}
-        >
-          Register Product
+        <TextInput placeholder='Delivery' onChangeText={e => setProduct(e)} />
+        <TouchableOpacity onPress={() => onSubmit()}>
+          <Text>Register</Text>
         </TouchableOpacity>
       </View>
     </View>

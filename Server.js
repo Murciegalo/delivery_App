@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyparser = require('body-parser')
 const userRouter = require('./routes/users')
 const authRouter = require('./routes/auth')
+const deliveryRouter = require('./routes/delivery')
 
 const app = express()
 app.use(cors())
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
+app.use('/delivery', deliveryRouter)
 
 let port = process.env.PORT || 3000
 app.listen(port, (req, res) => console.log('Server ON'))
