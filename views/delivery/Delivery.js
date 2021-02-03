@@ -5,6 +5,7 @@ import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 import config from '../../config/config.json'
 
 const Delivery = ({navigation}) => {
+  let result = ''
   let address = config.origin
   const [code, setCode] = useState(null)
   const [user, setUser] = useState(null)
@@ -13,12 +14,9 @@ const Delivery = ({navigation}) => {
 
   useEffect(() => {
     getUser()
+    randomTrack()
   ,[]})
   
-  useEffect(() => {
-    let code = randomTrack()
-    setCode(code)
-  ,[]})
 
   // Logged In user ID
   async function getUser(){
@@ -29,14 +27,16 @@ const Delivery = ({navigation}) => {
 
   //Random Track Code
   async function randomTrack(){
-    let result = ''
     let length = 20
     let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     for (let i = length; i > 0; i--) result += chars[Math.floor(Math.random() * 61)]
-    return result
   } 
   
   const onSubmit = async () => {
+    if(result !== null){
+      console.log('NOT NULL', result);
+      setCode(result)
+    }
     let res = await fetch(`${config.urlRoot}delivery/create`, {
       method: 'POST',
       headers: {
