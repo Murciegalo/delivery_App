@@ -13,7 +13,7 @@ const MenuRestr_Area = ({navigation, name}) => {
     <View style={styles.container}>
       <TouchableOpacity 
         style={styles.btnHome}
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate('home')}
       >
         <Icon name="home" size={20} color="#991" />
       </TouchableOpacity>
