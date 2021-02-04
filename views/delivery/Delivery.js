@@ -14,8 +14,12 @@ const Delivery = ({navigation}) => {
 
   useEffect(() => {
     getUser()
+  },[])
+  // avoid duplicates QRCodes
+  useEffect(() => {
     randomTrack()
-  ,[]})
+    setProduct(null)
+  ,[res]})
   
 
   // Logged In user ID
