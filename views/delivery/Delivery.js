@@ -1,6 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState,useEffect} from 'react'
 import { View, TextInput, Text, TouchableOpacity, Image, Button} from 'react-native';
+import * as Sharing from 'expo-sharing'
+import * as FileSystem from 'expo-file-system'
+
 import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 import config from '../../config/config.json'
 
@@ -58,11 +61,24 @@ const Delivery = ({navigation}) => {
     setRes(json)
   }
 
+  // Display QRCode 
   const qrCode = res && <View>
     <Image source={{uri:res, height:180, width:180}} />
-    <Button title='Share'/>
+    <Button title='Share' onPress={() => shareQR()}/>
   </View>
       
+  // Share QRCode
+  async function shareQR(){
+    const img = config.urlRoot+'img/code.png'
+    FileSystem.downloadAsync(
+      img,
+      FileSystem.documentDirectory+'code.png'
+    ).then(({uri}) => {
+      Sharing.shareAsync(uri)
+    });
+
+    await Sharing.shareAsync()
+  }
   return (
     <View>
       <MenuRestr_Area navigation={navigation} name={'Delivery'}/>

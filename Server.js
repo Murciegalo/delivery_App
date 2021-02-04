@@ -12,7 +12,7 @@ app.use(cors())
 app.use(bodyparser.urlencoded({extended:false}))
 //Accepts JSON
 app.use(bodyparser.json())
-
+app.use(express.static('assets'))
 app.get('/', (req, res) => {
   res.send('First get request')
 })
