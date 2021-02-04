@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const QRCode = require('qrcode')
 const models = require('../models');
 
 let tracking = models.Tracking;
@@ -18,6 +19,14 @@ router.post('/create', async (req, res) => {
   await product.create({
     trackingId,
     name: req.body.product
+  })
+
+  QRCode.toDataURL(req.body.code).then(url => {
+    QRCode.toFile(
+      './assets/img/code.png',
+      req.body.code
+    )
+    res.send(JSON.stringify(url))
   })
 })
 

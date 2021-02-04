@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState,useEffect} from 'react'
-import { View, TextInput, Text, TouchableOpacity} from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, Image, Button} from 'react-native';
 import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 import config from '../../config/config.json'
 
@@ -50,10 +50,19 @@ const Delivery = ({navigation}) => {
         product
       })
     })
+    let json = await res.json()
+    setRes(json)
   }
+
+  const qrCode = res && <View>
+    <Image source={{uri:res, height:180, width:180}} />
+    <Button title='Share'/>
+  </View>
+      
   return (
     <View>
       <MenuRestr_Area navigation={navigation} name={'Delivery'}/>
+      {qrCode}
       <View>
         <TextInput placeholder='Delivery' onChangeText={e => setProduct(e)} />
         <TouchableOpacity onPress={() => onSubmit()}>
