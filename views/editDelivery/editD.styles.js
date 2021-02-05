@@ -11,11 +11,15 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems:'center'
   },
-  qrCode: (display='flex') => ({
+  qrCode: (display ='flex') => ({
     width: '100%',
     height: '100%',
     backgroundColor: '#000',
     justifyContent: 'center',
+    display: display
+  }),
+  qrForm: (display = 'none') => ({
+    width: '100%',
     display: display
   })
 });
