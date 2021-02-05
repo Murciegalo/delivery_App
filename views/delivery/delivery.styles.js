@@ -7,23 +7,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     backgroundColor: "#fff",
   },
-  header:{
-    width: '100%',
-    alignItems:'center'
-  },
-  qrCode: (display ='flex') => ({
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#000',
-    justifyContent: 'center',
-    display: display
-  }),
-  qrForm: (display = 'none') => ({
-    flex: .5,
+  form: {
+    marginTop: 20,
     width: "80%",
     alignSelf: "center",
-    display: display
-  }),
+  },
   input: {
     backgroundColor: "#fff",
     fontSize: 17,
@@ -40,6 +28,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 22,
     color: "#fff",
+    alignSelf:'center'
   },
 });
 export default styles;

@@ -6,6 +6,7 @@ import * as FileSystem from 'expo-file-system'
 
 import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 import config from '../../config/config.json'
+import styles from './delivery.styles';
 
 const Delivery = ({navigation}) => {
   let result = ''
@@ -81,10 +82,16 @@ const Delivery = ({navigation}) => {
     <View>
       <MenuRestr_Area navigation={navigation} name={'Delivery'}/>
       {qrCode}
-      <View>
-        <TextInput placeholder='Delivery' onChangeText={e => setProduct(e)} />
-        <TouchableOpacity onPress={() => onSubmit()}>
-          <Text>Register</Text>
+      <View style={styles.form}>
+        <TextInput 
+          placeholder='Delivery' 
+          onChangeText={e => setProduct(e)} 
+          style={styles.input}
+        />
+        <TouchableOpacity 
+          onPress={() => onSubmit()}
+        >
+          <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
       </View>
     </View>

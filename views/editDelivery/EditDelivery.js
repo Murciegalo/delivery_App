@@ -44,6 +44,7 @@ const EditDelivery = ({navigation}) => {
       <Text>Tracker: {code}</Text>
       <View>
         <TextInput
+          style={styles.input} 
           placeholder="Product"
           onChangeText={e => setProduct(e)}
           value={product}
@@ -51,6 +52,7 @@ const EditDelivery = ({navigation}) => {
       </View>
       <View>
         <TextInput
+          style={styles.input} 
           placeholder="Location"
           onChangeText={e => setLocation(e)}
           value={location}
@@ -60,7 +62,7 @@ const EditDelivery = ({navigation}) => {
         style={styles.btn}
         onPress={() => onSubmit()}
       >
-        <Text>Update Delivery</Text>
+        <Text style={styles.btnText}>Update Delivery</Text>
       </TouchableOpacity>
     </View>
   </View>
