@@ -2,9 +2,10 @@ import React, {useState,useEffect} from 'react'
 import {Text, View} from 'react-native'
 import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 import {BarCodeScanner} from 'expo-barcode-scanner'
-import styles from './editD.styles';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
+import styles from './editD.styles';
+import config from '../../config/config.json'
 
 const EditDelivery = ({navigation}) => {
   const [hasPermission, setHasPermission] = useState(null)
@@ -29,6 +30,20 @@ const EditDelivery = ({navigation}) => {
     setDisplayQR('none')
     setDisplayForm('flex')
     setCode(data)
+    await getProduct(data)
+  }
+
+  async function getProduct(data){
+    let res = await fetch(`${config.urlRoot}delivery/getProduct`, {
+      method:'POST',
+      headers:{
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        data
+      })
+    })
   }
 
   async function onSubmit(){
