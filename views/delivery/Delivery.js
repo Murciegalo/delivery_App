@@ -70,13 +70,11 @@ const Delivery = ({navigation}) => {
   // Share QRCode
   async function shareQR(){
     const img = config.urlRoot+'img/code.png'
-    FileSystem.downloadAsync(
+    const {uri} = await FileSystem.downloadAsync(
       img,
       FileSystem.documentDirectory+'code.png'
-    ).then(({uri}) => {
-      Sharing.shareAsync(uri)
-    });
-
+    )
+    await Sharing.shareAsync(uri)
     await Sharing.shareAsync()
   }
   return (
