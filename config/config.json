@@ -21,5 +21,6 @@
     "dialect": "mysql"
   },
   "urlRoot": "http://192.168.0.20:3000/",
-  "origin": "Avda. Blasco Pedro 55 - Madrid / Sp"
+  "origin": "Avda. Blasco Pedro 55 - Madrid / Sp",
+  "k":"AIzaSyASRIPWNzdjzUfw8jxHb-iRhgYfJkngOAk"
 }

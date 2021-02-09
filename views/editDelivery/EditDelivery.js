@@ -66,9 +66,14 @@ const EditDelivery = ({navigation}) => {
 
   async function getLocation(){
     let location = await Location.getCurrentPositionAsync()
-    Geocoder.init('')
-    // setLocation(location)
-
+    Geocoder.init(config.k)
+    Geocoder.from( location.coords.latitude, location.coords.longitude)
+      .then( json => {
+        let number = json.results[0].address_components[0].short_name;
+        let street = json.results[0].address_components[1].short_name;
+        setLocation(`${street} - ${number}`)    
+      })
+      .catch( err => console.warn(err))
   }
 
   async function onSubmit(){
