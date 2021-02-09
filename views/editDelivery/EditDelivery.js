@@ -1,14 +1,17 @@
 import React, {useState,useEffect} from 'react'
 import {Text, View} from 'react-native'
-import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 import {BarCodeScanner} from 'expo-barcode-scanner'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import * as Location from 'expo-location'
+import Geocoder from 'react-native-geocoding'
 
+import MenuRestr_Area from '../../components/menuRestr_Area/MenuRestr_Area';
 import styles from './editD.styles';
 import config from '../../config/config.json'
 
 const EditDelivery = ({navigation}) => {
   const [hasPermission, setHasPermission] = useState(null)
+  const [errorMsg, setErrorMsg] = useState(null)
   const [scanned, setScanned] = useState(false)
   const [displayQR, setDisplayQR] = useState('flex')
   const [displayForm, setDisplayForm] = useState('none')
@@ -16,11 +19,23 @@ const EditDelivery = ({navigation}) => {
   const [location, setLocation] = useState(null)
   const [code, setCode] = useState(null)
 
+  // Request Permission to open camera
   useEffect(() => {
     (async () => {
       const {status} = await BarCodeScanner.requestPermissionsAsync()
       setHasPermission(status === 'granted')
     })()
+  }
+  , [])
+
+  // Request permision to authorize gps use
+  useEffect(() => {
+    ( async() => {
+      let {status} = await Location.requestPermissionsAsync()
+      if(status !== 'granted'){
+        return setErrorMsg('Permission to access location denied')
+      }
+    })
   }
   , [])
 
@@ -30,6 +45,7 @@ const EditDelivery = ({navigation}) => {
     setDisplayQR('none')
     setDisplayForm('flex')
     setCode(data)
+    await getLocation()
     await getProduct(data)
   }
 
@@ -48,8 +64,14 @@ const EditDelivery = ({navigation}) => {
     setProduct(json.Products[0].name)
   }
 
-  async function onSubmit(){
+  async function getLocation(){
+    let location = await Location.getCurrentPositionAsync()
+    Geocoder.init('')
+    // setLocation(location)
 
+  }
+
+  async function onSubmit(){
   }
   return <View>
     <MenuRestr_Area navigation={navigation} name={'Check Deliveries'}/>
