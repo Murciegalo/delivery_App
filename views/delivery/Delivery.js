@@ -42,7 +42,6 @@ const Delivery = ({navigation}) => {
   
   const onSubmit = async () => {
     if(result !== null){
-      console.log('NOT NULL', result);
       setCode(result)
     }
     let res = await fetch(`${config.urlRoot}delivery/create`, {
