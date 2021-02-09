@@ -41,9 +41,11 @@ const EditDelivery = ({navigation}) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        data
+        code: data
       })
     })
+    let json = await res.json()
+    setProduct(json.Products[0].name)
   }
 
   async function onSubmit(){

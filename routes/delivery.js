@@ -6,7 +6,7 @@ const models = require('../models');
 let tracking = models.Tracking;
 let product = models.Product;
 
-// Login User
+// Create Product delivery
 router.post('/create', async (req, res) => {
   console.log('Back', req.body);
   const delivery = await tracking.create({
@@ -28,6 +28,17 @@ router.post('/create', async (req, res) => {
     )
     res.send(JSON.stringify(url))
   })
+})
+
+
+// Get product info for deliverman
+router.post('/getProduct', async (req, res) => {
+  let resp = await tracking.findOne({
+    include: [{model: product}],
+    where: {code: req.body.code}
+  })
+  // console.log(res);
+  res.send(JSON.stringify(resp))
 })
 
 
